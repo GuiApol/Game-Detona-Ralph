@@ -39,6 +39,21 @@ justify-content:center;
     background-image: url("../imagens/ralph.png");
     background-size: cover;
 }
-.second{
-    margin-top: 10px;
+.enemy {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+.menu-time h2:nth-child(2),
+.menu-score h2:nth-child(2){
+ margin-top: 10px;
 }
