@@ -4,7 +4,9 @@ const state = {
         enemy: document.querySelector(".enemy"),
         timeleft: document.querySelector("#time-left"),
         score: document.querySelector("#score"),
-        lives: document.querySelector("#lives"), // Certifique-se de adicionar isso no HTML também
+        lives: document.querySelector("#lives"),
+        welcomeMessage: document.querySelector("#welcome-message"),
+        startGameButton: document.querySelector("#start-game"),
     },
     values: {
         gameVelocity: 1000,
@@ -32,6 +34,7 @@ const countDown = () => {
         clearInterval(state.actions.timerId);
         clearInterval(state.actions.countDownTimerId);
         alert("Game Over! O seu resultado foi: " + state.values.result);
+        restartGame(); // Chama a função para reiniciar o jogo
     }
 };
 
@@ -64,16 +67,35 @@ const addListenerHitbox = () => {
                     alert("Game Over! Você perdeu todas as vidas!");
                     clearInterval(state.actions.timerId);
                     clearInterval(state.actions.countDownTimerId);
+                    restartGame(); // Chama a função para reiniciar o jogo
                 }
             }
         });
     });
 };
 
-const initialize = () => {
-    addListenerHitbox();
+const restartGame = () => {
+    // Reinicia os valores do estado
+    state.values.result = 0;
+    state.values.currentTime = 60;
+    state.values.lives = 3;
+    state.view.score.textContent = state.values.result;
+    state.view.timeleft.textContent = state.values.currentTime;
+    state.view.lives.textContent = `x${state.values.lives}`;
+    // Reinicia os timers
     moveEnemy();
-    state.actions.countDownTimerId = setInterval(countDown, 1000); // Inicia a contagem regressiva
+    state.actions.countDownTimerId = setInterval(countDown, 1000);
 };
 
-initialize();
+const initialize = () => {
+    addListenerHitbox();
+    state.view.startGameButton.addEventListener("click", () => {
+        state.view.welcomeMessage.style.display = "none"; // Esconde a mensagem de boas-vindas
+        moveEnemy();
+        state.actions.countDownTimerId = setInterval(countDown, 1000); // Inicia a contagem regressiva
+    });
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    initialize();
+});

@@ -32,7 +32,7 @@ justify-content:center;
     height: 150px;
     border: 1px solid #000000;
     width: 150px;
-    background-color: #2fb488;
+    background-color: #dff2f5e0;
 }
 
 .enemy{
@@ -56,4 +56,40 @@ justify-content:center;
 .menu-time h2:nth-child(2),
 .menu-score h2:nth-child(2){
  margin-top: 10px;
+}
+
+.welcome-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    text-align: center;
+}
+
+.welcome-message h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.welcome-message p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.welcome-message button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #31A8DD;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
 }
